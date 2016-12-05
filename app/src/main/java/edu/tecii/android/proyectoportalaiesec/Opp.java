@@ -54,7 +54,7 @@ public class Opp extends Fragment {
         @Override
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh= new HttpHandler();
-            String url= "http://experience.aiesec.org/#/opportunities";
+            String url= "https://gis-api.aiesec.org:443/v2/opportunities.json?access_token=b74673f56ab049c657f12ede268b5fc4e3bdfa0775c0130edf1ad29b8d04e869";
             String jsonStr= sh.makeServiceCall(url);
 
             Log.e(TAG, "Response from url: "+jsonStr);
