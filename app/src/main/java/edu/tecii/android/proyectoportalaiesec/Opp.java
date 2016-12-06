@@ -125,7 +125,7 @@ public class Opp extends Fragment {
                     R.layout.list_view, new String[]{ "short_name","consumer_name"},
                     new int[]{R.id.short_name, R.id.consumer_name});
             lv.setAdapter(adapter);
-
+            //
         }
     }
 }
