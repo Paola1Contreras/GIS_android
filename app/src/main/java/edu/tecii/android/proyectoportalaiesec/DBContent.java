@@ -55,6 +55,8 @@ public class DBContent {
         this.is_favorited = is_favorited;
         this.organisation_id = organisation_id;
         this.id = id;
+
+      
     }
 
     public String getTitle() {

@@ -36,7 +36,7 @@ public class Opp extends Fragment {
         View view= inflater.inflate(R.layout.opportunities, container, false);
 
         oppo=new ArrayList<>();
-        lv=(ListView) view.findViewById(R.id.list);
+        //lv=(ListView) view.findViewById(R.id.list);
 
         new GetOp().execute();
         return view;
@@ -54,7 +54,7 @@ public class Opp extends Fragment {
         @Override
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh= new HttpHandler();
-            String url= "https://gis-api.aiesec.org:443/v2/opportunities.json?access_token=b74673f56ab049c657f12ede268b5fc4e3bdfa0775c0130edf1ad29b8d04e869";
+            String url= "https://gis-api.aiesec.org:443/v1/programmes.json?access_token=fbdff6c275de0739b4ac85b857550195d4d121e7fe3a4104d26eacc74a6213aa";
             String jsonStr= sh.makeServiceCall(url);
 
             Log.e(TAG, "Response from url: "+jsonStr);
@@ -63,14 +63,16 @@ public class Opp extends Fragment {
                     JSONObject jsonObj= new JSONObject(jsonStr);
                     JSONArray ops=jsonObj.getJSONArray("ops");
                     for (int i=0; i<ops.length(); i++){
-                        JSONObject c= ops.length(i);
+                        JSONObject c= ops.getJSONObject(i);
                         String id= c.getString("id");
-                        String title= c.getString("title");
-                        String status= c.getString("status");
-                        String location= c.getString("location");
-                        String programmes= c.getString("programmes");
-                        String applications_count= c.getString("applications_count");
-                        String organisation_id= c.getString("organisation_id");
+                        String short_name= c.getString("short_name");
+                        String constumer_name= c.getString("constumer_name");
+                        String description=c.getString("description");
+                        String color= c.getString("color");
+                        int group_id= c.getInt("group_id");
+                        String organisation_id= c.getString("profile_photo_urls");
+                        String cover_photo_urls=c.getString("cover_photo_urls");
+
 
 
 
@@ -81,7 +83,7 @@ public class Opp extends Fragment {
                     }
 
 
-                }
+                } catch (Exception e){}
 
             }
             return null;
