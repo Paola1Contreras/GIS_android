@@ -1,18 +1,15 @@
 package edu.tecii.android.proyectoportalaiesec;
 
-
+import android.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.HttpAuthHandler;
 
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -21,14 +18,13 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import android.support.v4.app.Fragment;
 
 /**
  * Created by Paola on 02/12/2016.
  */
 
 public class Opp extends Fragment {
-    boolean flag = false;
+
 
     private String TAG = MainActivity.class.getSimpleName();
     private ListView lv;
@@ -40,11 +36,9 @@ public class Opp extends Fragment {
         View view= inflater.inflate(R.layout.opportunities, container, false);
 
         oppo=new ArrayList<>();
-        lv=(ListView) view.findViewById(R.id.list);
+        //lv=(ListView) view.findViewById(R.id.list);
 
-        if(!flag)
         new GetOp().execute();
-
         return view;
 
     }
@@ -60,74 +54,39 @@ public class Opp extends Fragment {
         @Override
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh= new HttpHandler();
-            String url= "https://gis-api.aiesec.org/v2/programmes.json?access_token=39649efec3d81a3f7286d6d1f8321b74f565b9ac1628a8fa85112665a69b78d7";
+            String url= "https://gis-api.aiesec.org:443/v1/programmes.json?access_token=fbdff6c275de0739b4ac85b857550195d4d121e7fe3a4104d26eacc74a6213aa";
             String jsonStr= sh.makeServiceCall(url);
 
             Log.e(TAG, "Response from url: "+jsonStr);
             if (jsonStr !=null){
                 try {
-                    //JSONObject jsonObj= new JSONObject(jsonStr);
-                    //JSONArray ops=jsonObj.getJSONArray("ops");
-                    JSONArray ops = new JSONArray(jsonStr);
+                    JSONObject jsonObj= new JSONObject(jsonStr);
+                    JSONArray ops=jsonObj.getJSONArray("ops");
                     for (int i=0; i<ops.length(); i++){
                         JSONObject c= ops.getJSONObject(i);
                         String id= c.getString("id");
                         String short_name= c.getString("short_name");
-                        String consumer_name= c.getString("consumer_name");
+                        String constumer_name= c.getString("constumer_name");
                         String description=c.getString("description");
-                        //String color= c.getString("color");
+                        String color= c.getString("color");
                         int group_id= c.getInt("group_id");
                         String organisation_id= c.getString("profile_photo_urls");
                         String cover_photo_urls=c.getString("cover_photo_urls");
 
 
-                        HashMap<String, String> opp = new HashMap<>();
 
-                        opp.put("id", id);
-                        opp.put("short_name", short_name);
-                        opp.put("consumer_name", consumer_name);
-                        opp.put("description", description);
 
-                        oppo.add(opp);
+
+
+
 
                     }
 
 
-                } catch (JSONException e){
-                    Log.e(TAG, "Something is wrong");
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getContext(),
-                                    "Couldn't get json from server. Check LogCat for possible errors!",
-                                    Toast.LENGTH_LONG).show();
-                        }
-                    });
-                }
+                } catch (Exception e){}
 
-            } else {
-                Log.e(TAG, "AUIDAAAAAAAA");
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getContext(),
-                                "Couldn't get json from server. Check LogCat for possible errors!",
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
             }
             return null;
-
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-            ListAdapter adapter = new SimpleAdapter(getContext(), oppo,
-                    R.layout.list_view, new String[]{ "short_name","consumer_name"},
-                    new int[]{R.id.short_name, R.id.consumer_name});
-            lv.setAdapter(adapter);
-            flag = true;
         }
     }
 }

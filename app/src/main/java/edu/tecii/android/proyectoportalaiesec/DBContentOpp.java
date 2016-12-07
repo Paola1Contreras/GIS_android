@@ -3,10 +3,10 @@ package edu.tecii.android.proyectoportalaiesec;
 import java.net.URL;
 
 /**
- * Created by Paola on 02/12/2016.
+ * Created by Paola on 06/12/2016.
  */
 
-public class DBContent {
+public class DBContentOpp extends DB{
     public static final String TABLE_NAME="opportunities";
     public static final String FIELD_ID="id";
     public static final String FIELD_TITLE="title";
@@ -30,7 +30,7 @@ public class DBContent {
             FIELD_IS_FAVORITED+"text"+
             FIELD_ORGANISATION_ID+"integer autoincrement"+
             "}";
-    private int id;
+    //private int id;
     private String title;
     private URL url;
     private String status;
@@ -41,10 +41,12 @@ public class DBContent {
     private String is_favorited;
     private int organisation_id;
 
-    public DBContent(String title, URL url, String status,
+    public DBContentOpp(String title, URL url, String status,
                      String location, String programmes, String short_name,
                      int aplications_count, String is_favorited,
-                     int organisation_id, int id) {
+                     int organisation_id ){
+        super();
+        //, int id) {
         this.title = title;
         this.url = url;
         this.status = status;
@@ -54,9 +56,9 @@ public class DBContent {
         this.aplications_count = aplications_count;
         this.is_favorited = is_favorited;
         this.organisation_id = organisation_id;
-        this.id = id;
+      //  this.id = id;
 
-      
+
     }
 
     public String getTitle() {
@@ -67,13 +69,13 @@ public class DBContent {
         this.title = title;
     }
 
-    public int getId() {
-        return id;
-    }
+   // public int getId() {
+       // return id;
+    //}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    //public void setId(int id) {
+       // this.id = id;
+    //}
 
     public URL getUrl() {
         return url;
@@ -139,3 +141,5 @@ public class DBContent {
         this.organisation_id = organisation_id;
     }
 }
+
+//}
