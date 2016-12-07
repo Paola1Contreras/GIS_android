@@ -28,7 +28,7 @@ import android.support.v4.app.Fragment;
  */
 
 public class Opp extends Fragment {
-
+    boolean flag = false;
 
     private String TAG = MainActivity.class.getSimpleName();
     private ListView lv;
@@ -42,7 +42,9 @@ public class Opp extends Fragment {
         oppo=new ArrayList<>();
         lv=(ListView) view.findViewById(R.id.list);
 
+        if(!flag)
         new GetOp().execute();
+
         return view;
 
     }
@@ -58,7 +60,7 @@ public class Opp extends Fragment {
         @Override
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh= new HttpHandler();
-            String url= "https://gis-api.aiesec.org/v2/programmes.json?access_token=c1634c94ff71b652fe896c3c18cdefff2b4053b1c0cbadd548a9030008073141";
+            String url= "https://gis-api.aiesec.org/v2/programmes.json?access_token=39649efec3d81a3f7286d6d1f8321b74f565b9ac1628a8fa85112665a69b78d7";
             String jsonStr= sh.makeServiceCall(url);
 
             Log.e(TAG, "Response from url: "+jsonStr);
@@ -74,7 +76,6 @@ public class Opp extends Fragment {
                         String consumer_name= c.getString("consumer_name");
                         String description=c.getString("description");
                         //String color= c.getString("color");
-                        Log.e(TAG, "CACA "+ id);
                         int group_id= c.getInt("group_id");
                         String organisation_id= c.getString("profile_photo_urls");
                         String cover_photo_urls=c.getString("cover_photo_urls");
@@ -126,7 +127,7 @@ public class Opp extends Fragment {
                     R.layout.list_view, new String[]{ "short_name","consumer_name"},
                     new int[]{R.id.short_name, R.id.consumer_name});
             lv.setAdapter(adapter);
-
+            flag = true;
         }
     }
 }
