@@ -6,7 +6,8 @@ import java.net.URL;
  * Created by Paola on 06/12/2016.
  */
 
-public class BDContentProf extends DB{
+//NO MOVERLE A ESTA OTRA VAINA PLZ SEÑOR DIRECTOR, NO QUIERO REPROBAR
+public class BDContentProf  {
     public static final String TABLE_NAME="profiles";
     public static final String FIELD_ID="id";
     public static final String FIELD_SHORT_NAME="short_name";
@@ -42,6 +43,7 @@ public class BDContentProf extends DB{
                      String coustumer_name, String description, String color,
                      int group_id, String profiles_photo_urls,
                          String cover_photo_urls) {
+        super();
 
         this.id= id;
         this.short_name = short_name;

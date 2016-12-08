@@ -23,7 +23,17 @@ public class DB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(DBContentOpp.FIELD_CREATE_DB_TABLE);
+
+
+        db.execSQL("CREATE TABLE profile(id INTEGER PRIMARY KEY AUTOINCREMENT, short_name TEXT NOT NULL, consumer_name TEXT NOT NULL"+
+                "description TEXT NOT NULL, group_id INTEGER NOT NULL REFERENCES, profile_photo_urls TEXT NOT NULL"+
+        "cover_photo_urls TEXT NOT NULL ");
+
+        // TABLA CARRITO_DETALLE
+        db.execSQL("CREATE TABLE Opp(opportunity_id INTEGER PRIMARY KEY AUTOINCREMENT, status TEXT NOT NULL, url URL, location TEXT NOT NULL" +
+                "programmes TEXT NOT NULL, short_name TEXT NOT NULL, aplications_count INTEGER NOT NULL REFERENCES, is_favorited TEXT NOT NULL" +
+                "organisation_id INTEGER NOT NULL REFERENCES");
+
 
     }
 

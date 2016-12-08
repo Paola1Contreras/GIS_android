@@ -1,12 +1,16 @@
 package edu.tecii.android.proyectoportalaiesec;
 
+import android.content.Context;
+
 import java.net.URL;
 
 /**
  * Created by Paola on 06/12/2016.
  */
 
-public class DBContentOpp extends DB{
+//NO MOVERLE A ESTA VAINA
+
+public class DBContentOpp {
     public static final String TABLE_NAME="opportunities";
     public static final String FIELD_ID="id";
     public static final String FIELD_TITLE="title";
@@ -60,6 +64,8 @@ public class DBContentOpp extends DB{
 
 
     }
+
+
 
     public String getTitle() {
         return title;
@@ -140,6 +146,8 @@ public class DBContentOpp extends DB{
     public void setOrganisation_id(int organisation_id) {
         this.organisation_id = organisation_id;
     }
+
+
 }
 
 //}
