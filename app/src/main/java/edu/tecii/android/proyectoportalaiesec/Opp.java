@@ -29,7 +29,7 @@ import android.support.v4.app.Fragment;
  */
 
 public class Opp extends Fragment {
-    boolean flag = false;
+
 
     private String TAG = MainActivity.class.getSimpleName();
     private ListView lv;
@@ -47,8 +47,8 @@ public class Opp extends Fragment {
         lv=(ListView) view.findViewById(R.id.list);
         lv2=(ListView) view.findViewById(R.id.list2);
 
-        if(!flag)
-            new GetOp().execute();
+        //if()
+        new GetOp().execute();
 
         return view;
 
@@ -65,7 +65,7 @@ public class Opp extends Fragment {
         @Override
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh= new HttpHandler();
-            String url= "https://gis-api.aiesec.org/v2/programmes.json?access_token=0213b8b6d3fdc2775dc26a8cf95b0471331c75bb29219b26779665233f492bde";
+            String url= "https://gis-api.aiesec.org/v2/programmes.json?access_token=611c4b0c587fdf2a3614ad64da6bc7337a5f90c12416535856316629b53e68cc";
             String jsonStr= sh.makeServiceCall(url);
 
             Log.e(TAG, "Response from url: "+jsonStr);
@@ -123,7 +123,7 @@ public class Opp extends Fragment {
             }
 
             //OPPORTUNITIES
-            String url2 = "https://gis-api.aiesec.org:443/v2/opportunities.json?access_token=0213b8b6d3fdc2775dc26a8cf95b0471331c75bb29219b26779665233f492bde";
+            String url2 = "https://gis-api.aiesec.org:443/v2/opportunities.json?access_token=611c4b0c587fdf2a3614ad64da6bc7337a5f90c12416535856316629b53e68cc";
             String jsonStr2 = sh.makeServiceCall(url2);
             Log.e(TAG, "Response from url: " + jsonStr2);
             if (jsonStr2 != null) {
@@ -193,7 +193,7 @@ public class Opp extends Fragment {
                     R.layout.opp_list, new String[]{ "title","status","program"},
                     new int[]{R.id.op_name, R.id.op_status, R.id.op_prog});
             lv2.setAdapter(adapter2);
-            flag = true;
+            //flag = true;
         }
     }
 }

@@ -54,9 +54,9 @@ public class UserFragment extends Fragment {
 
     private void poblarViewPager(ViewPager viewPager) {
         AdaptadorSecciones adapter = new AdaptadorSecciones(getChildFragmentManager());
-        adapter.addFragment(new EpFragment(), "EP's");
+        //adapter.addFragment(new EpFragment(), "EP's");
+        adapter.addFragment(new ProfileFragment(), "EP's");
         adapter.addFragment(new Opp(), "Opportunities");
-        adapter.addFragment(new Opp(), "Profile");
         viewPager.setAdapter(adapter);
     }
     public void onDestroyView() {

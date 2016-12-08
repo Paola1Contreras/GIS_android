@@ -62,7 +62,7 @@ public class EpFragment extends Fragment {
         @Override
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh = new HttpHandler();
-            String url = "https://gis-api.aiesec.org:443/v2/people.json?access_token=0213b8b6d3fdc2775dc26a8cf95b0471331c75bb29219b26779665233f492bde";
+            String url = "https://gis-api.aiesec.org:443/v2/people.json?access_token=611c4b0c587fdf2a3614ad64da6bc7337a5f90c12416535856316629b53e68cc";
             String jsonStr = sh.makeServiceCall(url);
 
             Log.e(TAG, "Response from url: " + jsonStr);
