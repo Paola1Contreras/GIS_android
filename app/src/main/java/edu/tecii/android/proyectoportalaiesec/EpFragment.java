@@ -46,7 +46,7 @@ public class EpFragment extends Fragment {
 
         eps=new ArrayList<>();
         lvEps=(ListView) v.findViewById(R.id.ep_list);
-        
+
         new GetRecords().execute();
         return v;
     }
@@ -62,7 +62,7 @@ public class EpFragment extends Fragment {
         @Override
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh = new HttpHandler();
-            String url = "https://gis-api.aiesec.org:443/v2/people.json?access_token=39649efec3d81a3f7286d6d1f8321b74f565b9ac1628a8fa85112665a69b78d7";
+            String url = "https://gis-api.aiesec.org:443/v2/people.json?access_token=0213b8b6d3fdc2775dc26a8cf95b0471331c75bb29219b26779665233f492bde";
             String jsonStr = sh.makeServiceCall(url);
 
             Log.e(TAG, "Response from url: " + jsonStr);
@@ -116,11 +116,12 @@ public class EpFragment extends Fragment {
                     @Override
                     public void run() {
                         Toast.makeText(getContext(),
-                                "Couldn't get json from server. Check LogCat for possible errors!",
+                                "Couldn't get json from server. Acces token fail",
                                 Toast.LENGTH_LONG).show();
                     }
                 });
             }
+
             return null;
 
         }

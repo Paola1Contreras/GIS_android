@@ -50,6 +50,7 @@ public class DBContentOpp {
                      int aplications_count, String is_favorited,
                      int organisation_id ){
         super();
+
         //, int id) {
         this.title = title;
         this.url = url;
