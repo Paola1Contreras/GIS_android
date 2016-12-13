@@ -2,12 +2,15 @@ package edu.tecii.android.proyectoportalaiesec;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -22,6 +25,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +36,7 @@ import java.util.List;
  */
 
 public class ProfilePostAdapter extends ArrayAdapter{
-    private String url = "https://gis-api.aiesec.org:443/v2/people.json?access_token=611c4b0c587fdf2a3614ad64da6bc7337a5f90c12416535856316629b53e68cc";
+    private String url = "https://gis-api.aiesec.org:443/v2/people.json?access_token=775a089326900d61eb8b24169a3b7a6ac7dcee1ad6ee9464589236c159dfb5ee";
     private static final String TAG = "PostAdapter";
     List<ProfilePost> data;
     private RequestQueue requestQueue;
@@ -70,22 +76,25 @@ public class ProfilePostAdapter extends ArrayAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
 
-        View listItemView;
-
+        final View listItemView;
+        //ProgressBar progress2;
         listItemView = null == convertView ? layoutInflater.inflate(R.layout.pr_list, parent, false) : convertView;
+        //progress2 = (ProgressBar)listItemView.findViewById(R.id.progress2);
         //Log.d(TAG, "VER QUE PASA: "+listItemView.);
+
         ProfilePost item = data.get(position);
 
         TextView pr_name = (TextView) listItemView.findViewById(R.id.pr_name);
         //Log.d(TAG, "getView: "+pr_name);
         TextView pr_mail = (TextView) listItemView.findViewById(R.id.pr_mail);
-        final ImageView pr_image = (ImageView) listItemView.findViewById(R.id.pr_image);
+        //final ImageView pr_image = (ImageView) listItemView.findViewById(R.id.pr_image);
 
         pr_name.setText(item.getFull_name());
         pr_mail.setText(item.getEmail());
 
-        ImageRequest request = new ImageRequest(
+        /*ImageRequest request = new ImageRequest(
                 item.getImagen(),
+
                 new Response.Listener<Bitmap>() {
                     @Override
                     public void onResponse(Bitmap response) {
@@ -94,10 +103,13 @@ public class ProfilePostAdapter extends ArrayAdapter{
                 }, 0, 0, null, null,
                 new Response.ErrorListener() {
                     public void onErrorResponse(VolleyError error) {
+
+                        //pr_image.setImageBitmap();
                         Log.d(TAG, "Error en respuesta Bitmap: " + error.getMessage());
                     }
                 });
-        requestQueue.add(request);
+        //Log.d(TAG, "Que "+item.getImagen());
+        requestQueue.add(request);*/
         return listItemView;
 
     }
@@ -116,8 +128,8 @@ public class ProfilePostAdapter extends ArrayAdapter{
                     ProfilePost post = new ProfilePost(
                             object.getString("id"),
                             object.getString("email"),
-                            object.getString("full_name"),
-                            object.getString("profile_photo_url")
+                            object.getString("full_name")
+                            //object.getString("profile_photo_url")
                     );
 
                     posts.add(post);

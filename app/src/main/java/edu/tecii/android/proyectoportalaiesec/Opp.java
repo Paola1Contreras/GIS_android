@@ -65,7 +65,7 @@ public class Opp extends Fragment {
         @Override
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh= new HttpHandler();
-            String url= "https://gis-api.aiesec.org/v2/programmes.json?access_token=611c4b0c587fdf2a3614ad64da6bc7337a5f90c12416535856316629b53e68cc";
+            String url= "https://gis-api.aiesec.org/v2/programmes.json?access_token=775a089326900d61eb8b24169a3b7a6ac7dcee1ad6ee9464589236c159dfb5ee";
             String jsonStr= sh.makeServiceCall(url);
 
             Log.e(TAG, "Response from url: "+jsonStr);
@@ -123,7 +123,7 @@ public class Opp extends Fragment {
             }
 
             //OPPORTUNITIES
-            String url2 = "https://gis-api.aiesec.org:443/v2/opportunities.json?access_token=611c4b0c587fdf2a3614ad64da6bc7337a5f90c12416535856316629b53e68cc";
+            String url2 = "https://gis-api.aiesec.org:443/v2/opportunities.json?access_token=775a089326900d61eb8b24169a3b7a6ac7dcee1ad6ee9464589236c159dfb5ee";
             String jsonStr2 = sh.makeServiceCall(url2);
             Log.e(TAG, "Response from url: " + jsonStr2);
             if (jsonStr2 != null) {

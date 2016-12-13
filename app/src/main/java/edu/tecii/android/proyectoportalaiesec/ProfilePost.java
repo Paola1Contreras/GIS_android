@@ -14,11 +14,10 @@ public class ProfilePost {
 
     }
 
-    public ProfilePost(String id, String email, String full_name, String imagen){
+    public ProfilePost(String id, String email, String full_name){
         this.id = id;
         this.email = email;
         this.full_name = full_name;
-        this.imagen = imagen;
     }
 
     public String getId(){
@@ -45,11 +44,11 @@ public class ProfilePost {
         this.full_name = full_name;
     }
 
-    public  String getImagen(){
+    /*public  String getImagen(){
         return imagen;
     }
 
     public  void setImagen(String imagen){
         this.imagen = imagen;
-    }
+    }*/
 }
